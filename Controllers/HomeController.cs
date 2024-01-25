@@ -32,9 +32,7 @@ namespace SomeStrangeDotNetProject.Controllers
             {
                 return BadRequest("Invalid file type");
             }
-
-            string fileText = await ReadAllText(file);
-
+            JsonDocument doc;
             try
             {
                 JsonDocument.Parse(fileText);

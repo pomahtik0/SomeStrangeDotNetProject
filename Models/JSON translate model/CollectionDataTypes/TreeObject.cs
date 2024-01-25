@@ -9,6 +9,10 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         {
 
         }
+        public TreeObject(JsonDocument document)
+        {
+
+        }
         public override void ReadFromJson(JsonElement jsonElement)
         {
             throw new NotImplementedException();

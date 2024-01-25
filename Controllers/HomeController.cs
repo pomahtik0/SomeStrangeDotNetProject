@@ -33,7 +33,7 @@ namespace SomeStrangeDotNetProject.Controllers
             JsonDocument doc;
             try
             {
-                JsonDocument.Parse(fileText);
+                doc = await JsonDocument.ParseAsync(file.OpenReadStream());
             }
             catch (JsonException)
             {

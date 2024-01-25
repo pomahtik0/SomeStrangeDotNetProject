@@ -4,9 +4,10 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
 {
     public class TreeString : TreeComponent
     {
+        public string? Value { get; set; }
         public override void ReadFromJson(JsonElement jsonElement)
         {
-            throw new NotImplementedException();
+            Value = jsonElement.GetString();
         }
     }
 }

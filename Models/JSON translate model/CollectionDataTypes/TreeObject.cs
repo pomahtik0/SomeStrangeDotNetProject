@@ -1,6 +1,6 @@
 ﻿namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes
 {
-    public class MyObject
+    public class TreeObject
     {
     }
 }

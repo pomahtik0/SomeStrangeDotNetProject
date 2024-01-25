@@ -15,7 +15,17 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         }
         public override void ReadFromJson(JsonElement jsonElement)
         {
-            throw new NotImplementedException();
+            foreach(var child in jsonElement.EnumerateObject())
+            {
+                switch(child.Value.ValueKind)
+                {
+                    case JsonValueKind.String:
+                        break;
+                    case JsonValueKind.Object:
+                        break;
+                    default: throw new InvalidOperationException();
+                }
+            }
         }
     }
 }

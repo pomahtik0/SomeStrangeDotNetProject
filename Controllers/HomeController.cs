@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SomeStrangeDotNetProject.Models;
+using SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes;
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
@@ -41,7 +42,7 @@ namespace SomeStrangeDotNetProject.Controllers
             }
             TreeObject root = new TreeObject(doc);
             // Return a success message
-            return Ok($"File uploaded successfully: {fileText}");
+            return Ok($"File uploaded successfully: {doc.RootElement}");
         }
         public async Task<string> ReadAllText(IFormFile file)
         {

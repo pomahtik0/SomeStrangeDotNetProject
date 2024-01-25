@@ -2,7 +2,7 @@
 {
     public class TreeString : TreeComponent
     {
-        public override void PrintComponent()
+        public override void ReadFromJson()
         {
             throw new NotImplementedException();
         }

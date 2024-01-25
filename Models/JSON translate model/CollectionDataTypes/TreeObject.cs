@@ -11,7 +11,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         }
         public TreeObject(JsonDocument document)
         {
-
+            ReadFromJson(document.RootElement);
         }
         public override void ReadFromJson(JsonElement jsonElement)
         {

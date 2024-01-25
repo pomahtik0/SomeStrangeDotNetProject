@@ -54,8 +54,16 @@ namespace SomeStrangeDotNetProject.Controllers
 
             // Return a success message
             return Ok($"File uploaded successfully: {fileName}");
+        public async Task<string> ReadAllText(IFormFile file)
+        {
+            using (var stream = file.OpenReadStream())
+            {
+                using (var reader = new StreamReader(stream))
+                {
+                    return await reader.ReadToEndAsync();
+                }
+            }
         }
-
         public IActionResult Index()
         {
             return View();

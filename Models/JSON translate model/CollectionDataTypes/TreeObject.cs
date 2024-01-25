@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes;
+using System.Text.Json;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes
 {
@@ -20,6 +21,9 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 switch(child.Value.ValueKind)
                 {
                     case JsonValueKind.String:
+                        var treeString = new TreeString() { Key = child.Name };
+                        treeString.ReadFromJson(child.Value);
+                        children.Add(treeString);
                         break;
                     case JsonValueKind.Object:
                         break;

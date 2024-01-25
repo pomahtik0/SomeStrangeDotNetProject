@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SomeStrangeDotNetProject.Models;
 using System.Diagnostics;
+using System.Text;
 
 namespace SomeStrangeDotNetProject.Controllers
 {
@@ -52,8 +53,10 @@ namespace SomeStrangeDotNetProject.Controllers
             //    await file.CopyToAsync(fileStream);
             //}
 
+            string fileText = await ReadAllText(file);
             // Return a success message
-            return Ok($"File uploaded successfully: {fileName}");
+            return Ok($"File uploaded successfully: {fileText}");
+        }
         public async Task<string> ReadAllText(IFormFile file)
         {
             using (var stream = file.OpenReadStream())

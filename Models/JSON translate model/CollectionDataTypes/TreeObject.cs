@@ -2,6 +2,7 @@
 {
     public class TreeObject : TreeComponent
     {
+        protected List<TreeComponent> children = [];
         public override void PrintComponent()
         {
             throw new NotImplementedException();

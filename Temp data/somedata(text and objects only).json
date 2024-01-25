@@ -1,0 +1,12 @@
+{
+  "object1": {
+    "text1": "hello",
+    "text2": "world",
+    "object2": {
+      "text3": "its me"
+    }
+  },
+  "object4": {
+    "text4": "bye"
+  }
+}

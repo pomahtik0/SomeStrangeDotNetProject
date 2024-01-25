@@ -23,8 +23,6 @@ namespace SomeStrangeDotNetProject.Controllers
                 return BadRequest("No file selected");
             }
 
-            // Get the file name and extension
-            var fileName = Path.GetFileName(file.FileName);
             var fileExt = Path.GetExtension(file.FileName);
 
             // Validate the file extension

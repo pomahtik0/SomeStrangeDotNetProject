@@ -5,6 +5,10 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
     public class TreeObject : TreeComponent
     {
         protected List<TreeComponent> children = [];
+        protected TreeObject()
+        {
+
+        }
         public override void ReadFromJson(JsonElement jsonElement)
         {
             throw new NotImplementedException();

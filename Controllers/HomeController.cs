@@ -34,6 +34,16 @@ namespace SomeStrangeDotNetProject.Controllers
             }
 
             string fileText = await ReadAllText(file);
+
+            try
+            {
+                JsonDocument.Parse(fileText);
+            }
+            catch (JsonException)
+            {
+                return BadRequest("Not a json content in file");
+            }
+
             // Return a success message
             return Ok($"File uploaded successfully: {fileText}");
         }

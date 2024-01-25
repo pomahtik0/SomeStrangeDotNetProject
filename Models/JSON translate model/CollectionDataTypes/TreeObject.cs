@@ -26,6 +26,9 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                         children.Add(treeString);
                         break;
                     case JsonValueKind.Object:
+                        var treeObject = new TreeObject() { Key = child.Name };
+                        treeObject.ReadFromJson(child.Value);
+                        children.Add(treeObject);
                         break;
                     default: throw new InvalidOperationException();
                 }

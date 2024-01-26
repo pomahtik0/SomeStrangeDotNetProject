@@ -55,6 +55,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 this.Id = Convert.ToInt32(command.ExecuteScalar());
                 connection.Close();
             }
+            children.ForEach(child => child.DbSave(connection, root_id)); // saving children of the object
             return Id;
         }
 

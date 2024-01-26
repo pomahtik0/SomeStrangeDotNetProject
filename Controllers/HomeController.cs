@@ -64,6 +64,17 @@ namespace SomeStrangeDotNetProject.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public IActionResult SaveConnectionString(string text)
+        {
+            SqlConnectionStringBuilder connectionString = new SqlConnectionStringBuilder();
+            connectionString.AttachDBFilename = text;
+            connectionString.DataSource = "(localDb)\\MSSQLLocalDB";
+            HttpContext.Session.SetString("connection_string", connectionString.ConnectionString);
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

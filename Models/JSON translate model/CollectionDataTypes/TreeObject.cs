@@ -1,6 +1,7 @@
 ﻿using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes;
 using System.Data.SqlClient;
 using System.Text.Json;
+using System.Xml.Linq;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes
 {
@@ -48,7 +49,14 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
 
         public void DbSaveRoot(SqlConnection connection, string root_name)
         {
-
+            int root_id;
+            using (var command = new SqlCommand(@"INSERT INTO Roots(Root_name) OUTPUT inserted.Id VALUES(@Name)", connection))
+            {
+                command.Parameters.AddWithValue("@Name", root_name);
+                connection.Open();
+                root_id = Convert.ToInt32(command.ExecuteScalar());
+                connection.Close();
+            }
         }
     }
 }

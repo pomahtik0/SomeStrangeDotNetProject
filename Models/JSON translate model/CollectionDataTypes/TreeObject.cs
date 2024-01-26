@@ -1,4 +1,5 @@
 ﻿using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes;
+using System.Data.SqlClient;
 using System.Text.Json;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes
@@ -33,6 +34,16 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                     default: throw new InvalidOperationException();
                 }
             }
+        }
+
+        public override int DbRead(SqlConnection connection, int root_id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int DbSave(SqlConnection connection, int root_id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

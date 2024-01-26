@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
 using System.Text.Json;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
@@ -7,7 +8,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
     {
         public string Value { get; set; } = "";
 
-        public override int DbRead(SqlConnection connection, int root_id)
+        public override int DbRead(DataTable table)
         {
             throw new NotImplementedException();
         }

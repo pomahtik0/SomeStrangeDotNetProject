@@ -3,7 +3,7 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<form>
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="SaveConnectionString">
     <label for="text">your db full path:</label>
     <input type="text" id="text" name="text" value="C:\DB temp\mssqlDb.mdf" title="Enter full path to your local database. Database should habve no user authetication"/>
     <button type="submit">apply</button>

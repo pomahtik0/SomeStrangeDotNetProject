@@ -14,7 +14,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
 
         public override int DbSave(SqlConnection connection, int root_id)
         {
-            using (var command = new SqlCommand(@"INSERT INTO Objects([Key], [Value], [Separator], [Parent_id], [Root_id]) OUTPUT inserted.Id VALUES(@Key, @Value, @Separator, @Parent_id, @Root_id)", connection))
+            using (var command = new SqlCommand(@"INSERT INTO Objects([Key], [Value], [Separator], [Parent_id], [Root_id]) OUTPUT inserted.Id VALUES(@Key, @Value, @Separator, @Parent_id, @Root_id)", connection)) // saving object
             {
                 command.Parameters.AddWithValue("@Key", Key ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@Value", Value ?? (object)DBNull.Value);

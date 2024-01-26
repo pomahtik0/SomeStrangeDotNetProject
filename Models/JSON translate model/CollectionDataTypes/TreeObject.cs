@@ -65,6 +65,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         public override void DbRead(DataTable dataTable)
         {
             var currentObjectKey = dataTable.AsEnumerable().Where(row => row.Field<int>("Id") == this.Id).Select(x => x.Field<string?>("Key")).FirstOrDefault();
+            Key = currentObjectKey;
         }
 
         public override int DbSave(SqlConnection connection, int tree_id)

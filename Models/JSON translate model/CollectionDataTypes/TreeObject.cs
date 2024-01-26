@@ -64,8 +64,14 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
 
         public override void DbRead(DataTable dataTable)
         {
-            var currentObjectKey = dataTable.AsEnumerable().Where(row => row.Field<int>("Id") == this.Id).Select(x => x.Field<string?>("Key")).FirstOrDefault();
+            var currentObjectKey = dataTable.AsEnumerable().Where(row => row.Field<int>("Id") == this.Id).Select(x => x.Field<string?>("Key")).FirstOrDefault(); 
             Key = currentObjectKey;
+
+            var childrenRows = dataTable.AsEnumerable().Where(row => row.Field<int?>("Parent_id").Equals(Id)).Select(row => new { type = row.Field<string>("Separator"), id = row.Field<int>("Id") });
+            foreach (var childRow in childrenRows)
+            {
+
+            }
         }
 
         public override int DbSave(SqlConnection connection, int tree_id)

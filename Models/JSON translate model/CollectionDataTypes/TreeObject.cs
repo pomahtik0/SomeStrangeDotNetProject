@@ -17,6 +17,19 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         {
             ReadFromJson(document.RootElement);
         }
+        public TreeObject(SqlConnection connection, string root_name)
+        {
+            connection.Open();
+            using (SqlCommand command = new SqlCommand("SELECT [Root_id] FROM [Roots] WHERE [Name]=@Name", connection)) // command to get root id
+            {
+                command.Parameters.AddWithValue("@Name", root_name);
+                var reader = command.ExecuteReader();
+                reader.Read();
+                this.Id = (int)reader[0];
+                reader.Close();
+            }
+            connection.Close();
+        }
         public override void ReadFromJson(JsonElement jsonElement)
         {
             foreach(var child in jsonElement.EnumerateObject())

@@ -50,7 +50,7 @@ namespace SomeStrangeDotNetProject.Controllers
                 }
                 TreeObject root = new TreeObject(doc);
                 // Return a success message
-                throw new NotImplementedException();
+                return View("Index");
             }
 
             else throw new NotImplementedException();

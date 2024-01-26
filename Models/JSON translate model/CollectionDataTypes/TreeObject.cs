@@ -57,6 +57,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 root_id = Convert.ToInt32(command.ExecuteScalar());
                 connection.Close();
             }
+            DbSave(connection, root_id);
         }
     }
 }

@@ -1,10 +1,17 @@
-﻿using System.Text.Json;
+﻿using System.Data.SqlClient;
+using System.Text.Json;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model
 {
     public interface IJsonReadable
     {
         public abstract void ReadFromJson(JsonElement jsonElement);
+    }
+
+    public interface IDbSaveAndRead
+    {
+        public abstract int DbSave(SqlConnection connection, int root_id);
+        public abstract int DbRead(SqlConnection connection, int root_id);
     }
 
     public abstract class TreeComponent : IJsonReadable

@@ -18,6 +18,10 @@ namespace SomeStrangeDotNetProject.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadFile(IFormFile file, string text)
         {
+            if(!HttpContext.Session.Keys.Any(str => str == "connection_string"))
+            {
+                return BadRequest("Connect database first");
+            }
             // Check if the file is null or empty
             if (file == null || file.Length == 0)
             {

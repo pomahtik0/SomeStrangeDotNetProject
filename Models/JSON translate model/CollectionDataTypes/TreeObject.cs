@@ -39,6 +39,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 adapter.Fill(dataTable);
             }
             connection.Close();
+            DbRead(dataTable);
         }
         public override void ReadFromJson(JsonElement jsonElement)
         {

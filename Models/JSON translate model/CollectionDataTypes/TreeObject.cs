@@ -62,7 +62,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         public void DbSaveRoot(SqlConnection connection, string root_name)
         {
             int root_id;
-            using (var command = new SqlCommand(@"INSERT INTO Roots(Root_name) OUTPUT inserted.Id VALUES(@Name)", connection))
+            using (var command = new SqlCommand(@"INSERT INTO [Roots]([Name]) OUTPUT inserted.Id VALUES(@Name)", connection))
             {
                 command.Parameters.AddWithValue("@Name", root_name);
                 connection.Open();

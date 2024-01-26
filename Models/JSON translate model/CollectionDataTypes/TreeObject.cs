@@ -135,6 +135,14 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             {
                 connection.Close(); // closing connection if it is open;
             }
+            using (var command = new SqlCommand(@"Update [Trees] SET [Root_id]=@Root_id WHERE [Id]=@Id", connection)) // link to the root
+            {
+                command.Parameters.AddWithValue("@Id", root_id);
+                command.Parameters.AddWithValue("@Root_id", Id);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         {
             int tree_id;
             connection.Open();
-            using (SqlCommand command = new SqlCommand("SELECT [Root_id], [Tree_id] FROM [Roots] WHERE [Name]=@Name", connection)) // command to get root id
+            using (SqlCommand command = new SqlCommand("SELECT [Root_id], [Tree_id] FROM [Trees] WHERE [Name]=@Name", connection)) // command to get root id
             {
                 command.Parameters.AddWithValue("@Name", root_name);
                 var reader = command.ExecuteReader();
@@ -108,7 +108,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         public void DbSaveRoot(SqlConnection connection, string root_name)
         {
             int root_id;
-            using (var command = new SqlCommand(@"INSERT INTO [Roots]([Name]) OUTPUT inserted.Id VALUES(@Name)", connection))
+            using (var command = new SqlCommand(@"INSERT INTO [Trees]([Name]) OUTPUT inserted.Id VALUES(@Name)", connection))
             {
                 command.Parameters.AddWithValue("@Name", root_name);
                 connection.Open();
@@ -122,7 +122,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             catch
             {
                 connection.Close();
-                using (var command = new SqlCommand(@"DELETE FROM [Roots] WHERE [Id]=@id", connection)) // remove invalid root
+                using (var command = new SqlCommand(@"DELETE FROM [Trees] WHERE [Id]=@id", connection)) // remove invalid root
                 {
                     command.Parameters.AddWithValue("@id", root_id);
                     connection.Open();

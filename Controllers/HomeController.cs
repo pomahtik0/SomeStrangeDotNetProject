@@ -72,6 +72,7 @@ namespace SomeStrangeDotNetProject.Controllers
             SqlConnectionStringBuilder connectionString = new SqlConnectionStringBuilder();
             connectionString.AttachDBFilename = text;
             connectionString.DataSource = "(localDb)\\MSSQLLocalDB";
+            // TODO: check for valid string
             HttpContext.Session.SetString("connection_string", connectionString.ConnectionString);
             return View();
         }

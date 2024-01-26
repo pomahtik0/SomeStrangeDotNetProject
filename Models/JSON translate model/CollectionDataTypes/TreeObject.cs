@@ -65,9 +65,18 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         public override void DbRead(DataTable dataTable)
         {
             var childrenRows = dataTable.AsEnumerable().Where(row => row.Field<int?>("Parent_id").Equals(Id)).Select(row => new {key = row.Field<string?>("Key"), type = row.Field<string>("Separator"), id = row.Field<int>("Id") });
-            foreach (var childRow in childrenRows)
+            foreach (var child in childrenRows)
             {
-
+                TreeComponent childComponent;
+                switch(child.type)
+                {
+                    case "Object":
+                        childComponent = new TreeObject();
+                        break;
+                    case "String":
+                        childComponent = new TreeString();
+                        break;
+                }
             }
         }
 

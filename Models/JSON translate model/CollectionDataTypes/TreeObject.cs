@@ -33,7 +33,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             }
             
             DataTable dataTable = new DataTable();
-            using (SqlDataAdapter adapter = new SqlDataAdapter("Select * FROM [Objects] WHERE [Tree_id]=@Tree_id", connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("Select * FROM [Objects] WHERE [Tree_id]=@Tree_id", connection)) // creating dataAdapter to fill datatable with values of current tree
             {
                 adapter.SelectCommand.Parameters.AddWithValue("@Tree_id", tree_id);
                 adapter.Fill(dataTable);

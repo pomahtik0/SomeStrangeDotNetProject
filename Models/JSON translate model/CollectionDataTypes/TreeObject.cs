@@ -76,7 +76,12 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                     case "String":
                         childComponent = new TreeString();
                         break;
+                    default:
+                        throw new NotImplementedException();
                 }
+                childComponent.Id = child.id;
+                childComponent.Key = child.key;
+                children.Add(childComponent);
             }
         }
 

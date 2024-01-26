@@ -49,6 +49,10 @@ namespace SomeStrangeDotNetProject.Controllers
                     return BadRequest("Not a json content in file");
                 }
                 TreeObject root = new TreeObject(doc);
+                using (SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string")))
+                {
+                    root.DbSaveRoot(conn, text);
+                };
                 // Return a success message
                 return View("Index");
             }

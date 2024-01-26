@@ -1,4 +1,5 @@
-﻿using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes;
 using System.Data.SqlClient;
 using System.Text.Json;
 using System.Xml.Linq;
@@ -44,7 +45,17 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
 
         public override int DbSave(SqlConnection connection, int root_id)
         {
-            throw new NotImplementedException();
+            using (var command = new SqlCommand(@"INSERT INTO Objects([Key], [Separator], [Parent_id], [Root_id]) OUTPUT inserted.Id VALUES(@Key, @Separator, @Parent_id, @Root_id)", connection)) // saving object
+            {
+                command.Parameters.AddWithValue("@Key", Key ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@Separator", "Object");
+                command.Parameters.AddWithValue("@Parent_id", Parent?.Id ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@Root_id", root_id);
+                connection.Open();
+                this.Id = Convert.ToInt32(command.ExecuteScalar());
+                connection.Close();
+            }
+            return Id;
         }
 
         public void DbSaveRoot(SqlConnection connection, string root_name)

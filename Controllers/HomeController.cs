@@ -31,18 +31,24 @@ namespace SomeStrangeDotNetProject.Controllers
             {
                 return BadRequest("Invalid file type");
             }
-            JsonDocument doc;
-            try
+
+            if (fileExt == ".json")
             {
-                doc = await JsonDocument.ParseAsync(file.OpenReadStream());
+                JsonDocument doc;
+                try
+                {
+                    doc = await JsonDocument.ParseAsync(file.OpenReadStream());
+                }
+                catch (JsonException)
+                {
+                    return BadRequest("Not a json content in file");
+                }
+                TreeObject root = new TreeObject(doc);
+                // Return a success message
+                throw new NotImplementedException();
             }
-            catch (JsonException)
-            {
-                return BadRequest("Not a json content in file");
-            }
-            TreeObject root = new TreeObject(doc);
-            // Return a success message
-            return Ok($"File uploaded successfully: {doc.RootElement}");
+
+            else throw new NotImplementedException();
         }
         public IActionResult Index()
         {

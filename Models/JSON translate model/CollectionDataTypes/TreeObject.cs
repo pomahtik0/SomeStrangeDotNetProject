@@ -20,6 +20,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         }
         public TreeObject(SqlConnection connection, string root_name)
         {
+            int root_id;
             connection.Open();
             using (SqlCommand command = new SqlCommand("SELECT [Root_id], [Id] FROM [Roots] WHERE [Name]=@Name", connection)) // command to get root id
             {
@@ -27,12 +28,14 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 var reader = command.ExecuteReader();
                 reader.Read();
                 this.Id = (int)reader[0];
+                root_id = (int)reader[1];
                 reader.Close();
             }
             
             DataTable dataTable = new DataTable();
             using (SqlDataAdapter adapter = new SqlDataAdapter("Select * FROM [Objects] WHERE [Root_id]=@Root_id", connection))
             {
+                adapter.SelectCommand.Parameters.AddWithValue("@Root_id", root_id);
                 adapter.Fill(dataTable);
             }
             connection.Close();

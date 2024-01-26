@@ -21,13 +21,19 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         public TreeObject(SqlConnection connection, string root_name)
         {
             connection.Open();
-            using (SqlCommand command = new SqlCommand("SELECT [Root_id] FROM [Roots] WHERE [Name]=@Name", connection)) // command to get root id
+            using (SqlCommand command = new SqlCommand("SELECT [Root_id], [Id] FROM [Roots] WHERE [Name]=@Name", connection)) // command to get root id
             {
                 command.Parameters.AddWithValue("@Name", root_name);
                 var reader = command.ExecuteReader();
                 reader.Read();
                 this.Id = (int)reader[0];
                 reader.Close();
+            }
+            
+            DataTable dataTable = new DataTable();
+            using (SqlDataAdapter adapter = new SqlDataAdapter("Select * FROM [Objects] WHERE [Root_id]=@Root_id", connection))
+            {
+                adapter.Fill(dataTable);
             }
             connection.Close();
         }

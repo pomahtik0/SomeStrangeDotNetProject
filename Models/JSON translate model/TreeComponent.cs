@@ -2,7 +2,12 @@
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model
 {
-    public abstract class TreeComponent
+    public interface IJsonReadable
+    {
+        public abstract void ReadFromJson(JsonElement jsonElement);
+    }
+
+    public abstract class TreeComponent : IJsonReadable
     {
         public int Id { get; set; }
         public string? Key {  get; set; }

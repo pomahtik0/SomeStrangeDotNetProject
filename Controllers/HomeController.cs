@@ -32,7 +32,7 @@ namespace SomeStrangeDotNetProject.Controllers
             var fileExt = Path.GetExtension(file.FileName);
 
             // Validate the file extension
-            if (fileExt != ".json" || fileExt != ".txt")
+            if (fileExt != ".json" && fileExt != ".txt")
             {
                 return BadRequest("Invalid file type");
             }

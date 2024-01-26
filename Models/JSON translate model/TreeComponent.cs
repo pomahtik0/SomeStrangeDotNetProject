@@ -14,11 +14,14 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
         public abstract int DbRead(SqlConnection connection, int root_id);
     }
 
-    public abstract class TreeComponent : IJsonReadable
+    public abstract class TreeComponent : IJsonReadable, IDbSaveAndRead
     {
         public int Id { get; set; }
         public string? Key {  get; set; }
         public TreeComponent? Parent { get; set; }
+
+        public abstract int DbRead(SqlConnection connection, int root_id);
+        public abstract int DbSave(SqlConnection connection, int root_id);
         public abstract void ReadFromJson(JsonElement jsonElement);
     }
 }

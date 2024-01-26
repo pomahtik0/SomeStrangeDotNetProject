@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
 using System.Xml.Linq;
@@ -51,7 +52,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             }
         }
 
-        public override int DbRead(SqlConnection connection, int root_id)
+        public override int DbRead(DataTable dataTable)
         {
             throw new NotImplementedException();
         }

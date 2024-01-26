@@ -33,7 +33,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                         treeObject.ReadFromJson(child.Value);
                         children.Add(treeObject);
                         break;
-                    default: throw new InvalidOperationException();
+                    default: throw new NotImplementedException();
                 }
             }
         }

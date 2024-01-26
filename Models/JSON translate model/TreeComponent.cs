@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
 using System.Text.Json;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model
@@ -11,7 +12,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
     public interface IDbSaveAndRead
     {
         public abstract int DbSave(SqlConnection connection, int root_id);
-        public abstract int DbRead(SqlConnection connection, int root_id);
+        public abstract int DbRead(DataTable table);
     }
 
     public abstract class TreeComponent : IJsonReadable, IDbSaveAndRead
@@ -20,7 +21,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
         public string? Key {  get; set; }
         public TreeComponent? Parent { get; set; }
 
-        public abstract int DbRead(SqlConnection connection, int root_id);
+        public abstract int DbRead(DataTable table);
         public abstract int DbSave(SqlConnection connection, int root_id);
         public abstract void ReadFromJson(JsonElement jsonElement);
     }

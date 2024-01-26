@@ -81,6 +81,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 }
                 childComponent.Id = child.id;
                 childComponent.Key = child.key;
+                childComponent.Parent = this;
                 children.Add(childComponent);
                 childComponent.DbRead(dataTable);
             }

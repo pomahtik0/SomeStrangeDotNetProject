@@ -12,7 +12,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
     public interface IDbSaveAndRead
     {
         public abstract int DbSave(SqlConnection connection, int tree_id);
-        public abstract int DbRead(DataTable table);
+        public abstract void DbRead(DataTable table);
     }
 
     public abstract class TreeComponent : IJsonReadable, IDbSaveAndRead
@@ -21,7 +21,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
         public string? Key {  get; set; }
         public TreeComponent? Parent { get; set; }
 
-        public abstract int DbRead(DataTable table);
+        public abstract void DbRead(DataTable table);
         public abstract int DbSave(SqlConnection connection, int tree_id);
         public abstract void ReadFromJson(JsonElement jsonElement);
     }

@@ -62,7 +62,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             }
         }
 
-        public override int DbRead(DataTable dataTable)
+        public override void DbRead(DataTable dataTable)
         {
             throw new NotImplementedException();
         }

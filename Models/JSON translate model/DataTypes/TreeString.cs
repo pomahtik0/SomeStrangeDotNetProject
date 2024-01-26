@@ -8,7 +8,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
     {
         public string Value { get; set; } = "";
 
-        public override int DbRead(DataTable table)
+        public override void DbRead(DataTable table)
         {
             throw new NotImplementedException();
         }

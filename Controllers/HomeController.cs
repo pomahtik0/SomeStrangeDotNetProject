@@ -16,7 +16,7 @@ namespace SomeStrangeDotNetProject.Controllers
             _logger = logger;
         }
         [HttpPost]
-        public async Task<IActionResult> UploadFile(IFormFile file)
+        public async Task<IActionResult> UploadFile(IFormFile file, string text)
         {
             // Check if the file is null or empty
             if (file == null || file.Length == 0)

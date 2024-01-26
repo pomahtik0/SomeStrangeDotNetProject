@@ -20,22 +20,22 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         }
         public TreeObject(SqlConnection connection, string root_name)
         {
-            int root_id;
+            int tree_id;
             connection.Open();
-            using (SqlCommand command = new SqlCommand("SELECT [Root_id], [Id] FROM [Roots] WHERE [Name]=@Name", connection)) // command to get root id
+            using (SqlCommand command = new SqlCommand("SELECT [Root_id], [Tree_id] FROM [Roots] WHERE [Name]=@Name", connection)) // command to get root id
             {
                 command.Parameters.AddWithValue("@Name", root_name);
                 var reader = command.ExecuteReader();
                 reader.Read();
                 this.Id = (int)reader[0];
-                root_id = (int)reader[1];
+                tree_id = (int)reader[1];
                 reader.Close();
             }
             
             DataTable dataTable = new DataTable();
-            using (SqlDataAdapter adapter = new SqlDataAdapter("Select * FROM [Objects] WHERE [Root_id]=@Root_id", connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("Select * FROM [Objects] WHERE [Tree_id]=@Tree_id", connection))
             {
-                adapter.SelectCommand.Parameters.AddWithValue("@Root_id", root_id);
+                adapter.SelectCommand.Parameters.AddWithValue("@Tree_id", tree_id);
                 adapter.Fill(dataTable);
             }
             connection.Close();

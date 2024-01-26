@@ -48,12 +48,12 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 switch(child.Value.ValueKind)
                 {
                     case JsonValueKind.String:
-                        var treeString = new TreeString() { Key = child.Name };
+                        var treeString = new TreeString() { Key = child.Name, Parent = this };
                         treeString.ReadFromJson(child.Value);
                         children.Add(treeString);
                         break;
                     case JsonValueKind.Object:
-                        var treeObject = new TreeObject() { Key = child.Name };
+                        var treeObject = new TreeObject() { Key = child.Name, Parent = this };
                         treeObject.ReadFromJson(child.Value);
                         children.Add(treeObject);
                         break;

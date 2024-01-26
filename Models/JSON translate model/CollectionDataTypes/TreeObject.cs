@@ -45,5 +45,10 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         {
             throw new NotImplementedException();
         }
+
+        public void SaveRoot(SqlConnection connection, string root_name)
+        {
+
+        }
     }
 }

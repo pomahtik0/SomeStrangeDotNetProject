@@ -69,7 +69,19 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 root_id = Convert.ToInt32(command.ExecuteScalar());
                 connection.Close();
             }
-            DbSave(connection, root_id);
+            try
+            {
+                DbSave(connection, root_id);
+            }
+            catch
+            {
+                //remove all traces
+                throw; // rethrow exception
+            }
+            finally
+            {
+                connection.Close(); // closing connection if it is open;
+            }
         }
     }
 }

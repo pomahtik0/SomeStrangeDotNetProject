@@ -75,7 +75,14 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             }
             catch
             {
-                //remove all traces
+                connection.Close();
+                using (var command = new SqlCommand(@"DELETE FROM [Roots] WHERE [Id]=@id", connection)) // remove invalid root
+                {
+                    command.Parameters.AddWithValue("@id", root_id);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
                 throw; // rethrow exception
             }
             finally

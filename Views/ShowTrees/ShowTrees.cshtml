@@ -81,7 +81,7 @@
         <ul id="myUL">
             <li>
                 <span class ="caret">@Model.Name</span>
-                @Html.Raw(RenderTree(Model.TreeRoot))
+                @Html.Raw(Model.TreeRoot.Render())
             </li>
         </ul>
     }

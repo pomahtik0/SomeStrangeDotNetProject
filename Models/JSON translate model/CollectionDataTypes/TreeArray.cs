@@ -1,5 +1,6 @@
 ﻿using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes;
 using System.Data.SqlClient;
+using System.Text;
 using System.Text.Json;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes
@@ -62,7 +63,21 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         }
         public override string Render()
         {
-            return $"[{base.Render()}]";
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(
+                $"""
+                <li>
+                    <span class='caret'>{Key ?? Parent?.children.IndexOf(this).ToString() ?? ""}</span>[
+                    <ul class='nested'>
+                """);
+
+            foreach (var child in children)
+            {
+                sb.AppendLine(child.Render());
+            }
+
+            sb.AppendLine("</ul>]</li>");
+            return sb.ToString();
         }
     }
 }

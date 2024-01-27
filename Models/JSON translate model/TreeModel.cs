@@ -81,12 +81,12 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
                     <li>
                 """);
 
-            if(TreeRoot?.Key == null)
-            {
-                sb.AppendLine($"""
-                            <span class="caret">{Name}</span>
-                            """);
-            }
+            //if(TreeRoot?.Key == null)
+            //{
+            //    sb.AppendLine($"""
+            //                <span class="caret">{Name}</span>
+            //                """);
+            //}
 
             sb.AppendLine(TreeRoot?.Render());
 

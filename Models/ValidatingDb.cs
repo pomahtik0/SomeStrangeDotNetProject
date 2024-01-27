@@ -38,7 +38,8 @@ namespace SomeStrangeDotNetProject.Models
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 int count = (int)cmd.ExecuteScalar();
-                if(count== 2)
+                conn.Close();
+                if (count == 2)
                 {
                     return true;
                 }

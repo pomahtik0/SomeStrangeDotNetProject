@@ -178,7 +178,22 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
 
         public void FindOrCreate(Queue<string> queue)
         {
+            if (children.Any(x => x.Key == queue.Peek())) // Find
+            {
+                if(queue.Count == 2)
+                {
+                    throw new InvalidOperationException("Attampt to reasighn existing value");
+                }
+                queue.Dequeue();
+                FindOrCreate(queue);
+            }
+            else if (queue.Count > 2) // Else create
+            {
 
+            }
+            else if (queue.Count == 2)
+            {
+            }
         }
 
         public override string Render()

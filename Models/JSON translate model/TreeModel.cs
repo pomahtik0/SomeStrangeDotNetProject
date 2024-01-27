@@ -16,7 +16,18 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
         public void ReadFromTxt(IFormFile file)
         {
             Name = Path.GetFileNameWithoutExtension(file.FileName);
-
+            var readStream = file.OpenReadStream();
+            using(StreamReader reader = new StreamReader(readStream))
+            {
+                string? str;
+                TreeObject treeroot = new TreeObject();
+                this.TreeRoot = treeroot;
+                while((str = reader.ReadLine()) != null)
+                {
+                    var queue = new Queue<string>(str.Split(':'));
+                    treeroot.FindOrCreate(queue);
+                };
+            }
         }
 
         public void ReadFromJson(IFormFile file) 

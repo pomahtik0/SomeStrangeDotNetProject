@@ -45,7 +45,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             foreach(var child in jsonElement.EnumerateObject())
             {
                 TreeComponent treeComponent;
-                switch(child.Value.ValueKind)
+                switch(child.Value.ValueKind) // fabric?
                 {
                     case JsonValueKind.String:
                         treeComponent = new TreeString();

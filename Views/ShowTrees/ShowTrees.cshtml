@@ -1,5 +1,28 @@
 ﻿@using SomeStrangeDotNetProject.Models.JSON_translate_model
+@using SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes
+@using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
 @model TreeModel
+@functions {
+    string RenderTree(TreeObject rout)
+    {
+        string htmlString = "<ul>"; // string builder mb
+        foreach (var child in rout)
+        {
+            htmlString += "<li>";
+            if (child is TreeObject)
+            {
+                htmlString += $"<Span>{child.Key}</Span>";
+                htmlString += RenderTree((TreeObject)child);
+            }
+            else if (child is TreeString)
+            {
+                htmlString += $"{child.Key}  {((TreeString)child).Value}";
+            }
+            htmlString += "</li>";
+        }
+        return htmlString += "</ul>";
+    }
+}
 
 @using (Html.BeginForm("GetTree", "ShowTrees", FormMethod.Get))
 {
@@ -10,8 +33,13 @@
 }
 
 @{
-    if(Model != null)
+    if (Model?.TreeRoot != null)
     {
-        <p>@Model.TreeRoot.Id</p>
+        <ul>
+            <li>
+                <span>@Model.Name</span>
+                @RenderTree(Model.TreeRoot)
+            </li>
+        </ul>
     }
 }

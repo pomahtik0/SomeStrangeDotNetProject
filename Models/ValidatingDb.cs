@@ -13,20 +13,16 @@ namespace SomeStrangeDotNetProject.Models
 
         private bool DatabaseExist(SqlConnection conn) // possibly wrong
         {
-            conn.Open();
-            string sql = "SELECT OBJECT_ID(N'mydatabase', N'DB')";
-            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            try
             {
-                object result = cmd.ExecuteScalar();
-                if (result != null)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                conn.Open();
             }
+            catch
+            {
+                return false;
+            }
+            conn.Close();
+            return true;
         }
 
         private bool DataTablesExist(SqlConnection conn)

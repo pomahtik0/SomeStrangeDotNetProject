@@ -3,6 +3,7 @@ using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes;
 using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 using System.Text.Json;
 using System.Xml.Linq;
 
@@ -177,7 +178,14 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
 
         public override string Render()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(
+                $"""
+                <span class='caret'>{Key ?? Parent?.children.IndexOf(this).ToString() ?? ""}</span>
+                <ul class='nested'>
+                """);
+            sb.AppendLine("</ul>");
+            return sb.ToString();
         }
     }
 }

@@ -34,5 +34,10 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
         {
             Value = jsonElement.GetString() ?? "";
         }
+
+        public override string Render()
+        {
+            return $"<li>{Value}</li>";
+        }
     }
 }

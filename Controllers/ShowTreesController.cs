@@ -15,6 +15,8 @@ namespace SomeStrangeDotNetProject.Controllers
             ViewBag.Trees = selectList;
             return View("ShowTrees");
         }
+
+        [HttpGet]
         public IActionResult GetTree(TreeModel tree)
         {
             return BadRequest($"{tree.Name} {tree.Id}");

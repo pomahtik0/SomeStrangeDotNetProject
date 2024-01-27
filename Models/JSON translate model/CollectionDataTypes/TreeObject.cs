@@ -176,7 +176,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             }
         }
 
-        private void FindOrCreate(Queue<string> queue)
+        public void FindOrCreate(Queue<string> queue)
         {
 
         }

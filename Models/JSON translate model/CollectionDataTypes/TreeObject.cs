@@ -176,6 +176,30 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             }
         }
 
+        public void FindOrCreate(Queue<string> queue)
+        {
+            string key = queue.Dequeue();
+            TreeObject? existingKey = children.Find(x => x.Key == key) as TreeObject;
+            if (existingKey != null) // Find
+            {
+                if(queue.Count == 1)
+                {
+                    throw new InvalidOperationException("Attampt to reasighn existing value");
+                }
+                existingKey.FindOrCreate(queue);
+            }
+            else if (queue.Count > 1) // Else create
+            {
+                TreeObject treeObject = new TreeObject() { Key = key, Parent = this };
+                children.Add(treeObject);
+                treeObject.FindOrCreate(queue);
+            }
+            else if (queue.Count == 1)
+            {
+                children.Add(new TreeString() { Key= key, Value = queue.Dequeue(), Parent = this });
+            }
+        }
+
         public override string Render()
         {
             StringBuilder sb = new StringBuilder();

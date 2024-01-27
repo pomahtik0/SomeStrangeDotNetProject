@@ -3,6 +3,7 @@ using System;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model
 {
@@ -11,6 +12,32 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
         public int Id { get; set; }
         public string Name { get; set; } = "";
         public TreeComponent? TreeRoot { get; set; }
+
+        public void ReadFromTxt(IFormFile file)
+        {
+            Name = Path.GetFileNameWithoutExtension(file.FileName);
+            var readStream = file.OpenReadStream();
+            using(StreamReader reader = new StreamReader(readStream))
+            {
+                string? str;
+                TreeObject treeroot = new TreeObject();
+                this.TreeRoot = treeroot;
+                while((str = reader.ReadLine()) != null)
+                {
+                    var queue = new Queue<string>(str.Split(':'));
+                    treeroot.FindOrCreate(queue);
+                };
+            }
+        }
+
+        public void ReadFromJson(IFormFile file) 
+        {
+            Name = Path.GetFileNameWithoutExtension(file.FileName);
+            JsonDocument doc;
+            doc = JsonDocument.Parse(file.OpenReadStream());
+            TreeRoot = new TreeObject(doc);
+        }
+
         public static IEnumerable<TreeModel> GetAllDbTrees(SqlConnection connection)
         {
             List<TreeModel> trees = new List<TreeModel>();

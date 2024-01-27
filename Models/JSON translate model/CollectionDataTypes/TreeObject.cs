@@ -188,12 +188,15 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 }
                 existingKey.FindOrCreate(queue);
             }
-            else if (queue.Count > 2) // Else create
+            else if (queue.Count > 1) // Else create
             {
-
+                TreeObject treeObject = new TreeObject() { Key = key };
+                children.Add(treeObject);
+                treeObject.FindOrCreate(queue);
             }
-            else if (queue.Count == 2)
+            else if (queue.Count == 1)
             {
+                children.Add(new TreeString() { Key= key, Value = queue.Dequeue() });
             }
         }
 

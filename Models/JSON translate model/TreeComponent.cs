@@ -23,7 +23,12 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
     public abstract class TreeComponent : IJsonReadable, IDbSaveAndRead, IRender
     {
         public int Id { get; set; }
-        public string? Key {  get; set; }
+        private string? key;
+        public string? Key
+        {
+            get => key ?? Parent?.children.IndexOf(this).ToString() ?? null;
+            set => key = value;
+        }
         public TreeObject? Parent { get; set; }
 
         public abstract void DbRead(DataTable table);

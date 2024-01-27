@@ -28,20 +28,17 @@ namespace SomeStrangeDotNetProject.Models
         private bool DataTablesExist(SqlConnection conn)
         {
             conn.Open();
-            string sql = "SELECT name FROM sys.tables WHERE name IN ('Trees', 'Objects')";
+            string sql = "SELECT COUNT(*) FROM sys.tables WHERE name IN ('Trees', 'Objects')";
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                int count = (int)cmd.ExecuteScalar();
+                if(count== 2)
                 {
-                    reader.Read();
-                    if(reader.Read())
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return true;
+                }
+                else
+                { 
+                    return false;
                 }
             }
         }

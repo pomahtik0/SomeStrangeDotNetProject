@@ -94,11 +94,22 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                     case "Object":
                         childComponent = new TreeObject();
                         break;
+                    case "Array":
+                        childComponent = new TreeArray();
+                        break;
                     case "String":
                         childComponent = new TreeString();
                         break;
-                    default:
-                        throw new NotImplementedException();
+                    case "Bool":
+                        childComponent = new TreeBool();
+                        break;
+                    case "Number":
+                        childComponent = new TreeNumber();
+                        break;
+                    case "Null":
+                        childComponent = new TreeNull();
+                        break;
+                    default: throw new InvalidOperationException("I didn't put that there!");
                 }
                 childComponent.Id = child.id;
                 childComponent.Key = child.key;

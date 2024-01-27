@@ -146,16 +146,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
 
         public IEnumerator<TreeComponent> GetEnumerator()
         {
-            yield return this;
-            foreach (var child in children)
-            {
-                if (child is TreeObject)
-                {
-                    foreach (var subChild in (TreeObject)child)
-                        yield return subChild;
-                }
-                else yield return child;
-            }
+            throw new NotImplementedException();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

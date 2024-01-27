@@ -39,6 +39,8 @@ namespace SomeStrangeDotNetProject.Controllers
                 return BadRequest("Invalid file type");
             }
 
+            TreeObject root;
+
             if (fileExt == ".json")
             {
                 JsonDocument doc;
@@ -50,16 +52,19 @@ namespace SomeStrangeDotNetProject.Controllers
                 {
                     return BadRequest("Not a json content in file");
                 }
-                TreeObject root = new TreeObject(doc);
-                using (SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string")))
-                {
-                    root.DbSaveRoot(conn, fileName);
-                };
-                // Return a success message
-                return View("Index");
+                root = new TreeObject(doc);
+
+            }
+            else
+            {
+                throw new NotImplementedException();
             }
 
-            else throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string")))
+            {
+                root.DbSaveRoot(conn, fileName);
+            };
+            return RedirectToAction("Index", "ShowTrees");
         }
 
         public IActionResult Index()

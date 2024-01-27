@@ -33,14 +33,7 @@
     <input type="submit" value="Load this tree" />
 }
 
-@{
-    if (Model?.TreeRoot != null)
-    {
-        <ul id="myUL">
-            <li>
-                <span class ="caret">@Model.Name</span>
-                @Html.Raw(Model.TreeRoot.Render())
-            </li>
-        </ul>
-    }
+@if (Model is not null)
+{
+    
 }

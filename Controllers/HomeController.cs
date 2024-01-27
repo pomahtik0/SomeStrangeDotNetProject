@@ -16,6 +16,7 @@ namespace SomeStrangeDotNetProject.Controllers
         {
             _logger = logger;
         }
+
         [HttpPost]
         public async Task<IActionResult> UploadFile(IFormFile file, string text)
         {
@@ -59,6 +60,7 @@ namespace SomeStrangeDotNetProject.Controllers
 
             else throw new NotImplementedException();
         }
+
         public IActionResult Index()
         {
             return View("ConnectDb");
@@ -68,7 +70,6 @@ namespace SomeStrangeDotNetProject.Controllers
         {
             return View();
         }
-
 
         [HttpPost]
         public IActionResult SaveConnectionString(string text)

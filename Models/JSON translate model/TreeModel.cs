@@ -75,26 +75,12 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
                     }
                 </style>
                 """); // adding styles
-            sb.AppendLine
-                ("""
-                <ul id="myUL">
-                    <li>
-                """);
 
-            //if(TreeRoot?.Key == null)
-            //{
-            //    sb.AppendLine($"""
-            //                <span class="caret">{Name}</span>
-            //                """);
-            //}
+            sb.AppendLine("""<ul id="myUL">""");
 
             sb.AppendLine(TreeRoot?.Render());
 
-            sb.AppendLine
-                ("""
-                    </li>
-                </ul>
-                """);
+            sb.AppendLine("<ul>");
 
             sb.AppendLine
                 ("""              

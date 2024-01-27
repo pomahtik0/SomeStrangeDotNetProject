@@ -17,7 +17,6 @@ namespace SomeStrangeDotNetProject.Controllers
             return View("ShowTrees");
         }
 
-        [HttpGet]
         public IActionResult GetTree(TreeModel tree)
         {
             using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));

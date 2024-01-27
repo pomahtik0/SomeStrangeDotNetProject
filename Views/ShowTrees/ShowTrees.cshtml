@@ -67,7 +67,7 @@
     }
 }
 
-@using (Html.BeginForm("GetTree", "ShowTrees", FormMethod.Get))
+@using (Html.BeginForm("GetTree", "ShowTrees", FormMethod.Post))
 {
     @Html.LabelFor(m => m.Id, "Tree name:")
     @Html.DropDownListFor(m => m.Id, (SelectList)ViewBag.Trees)

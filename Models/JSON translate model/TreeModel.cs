@@ -3,6 +3,7 @@ using System;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model
 {
@@ -19,7 +20,9 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
 
         public void ReadFromJson(IFormFile file) 
         {
-        
+            JsonDocument doc;
+            doc = JsonDocument.Parse(file.OpenReadStream());
+            TreeRoot = new TreeObject(doc);
         }
 
         public static IEnumerable<TreeModel> GetAllDbTrees(SqlConnection connection)

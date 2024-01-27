@@ -12,7 +12,7 @@ namespace SomeStrangeDotNetProject.Controllers
             using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));
             var list = TreeModel.GetAllDbTrees(conn);
             var selectList = new SelectList(list, "Id", "Name");
-            ViewBag.Items = selectList;
+            ViewBag.Trees = selectList;
             return View("ShowTrees");
         }
     }

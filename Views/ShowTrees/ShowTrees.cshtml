@@ -4,7 +4,7 @@
 @using (Html.BeginForm("GetTree", "ShowTrees", FormMethod.Get))
 {
     @Html.LabelFor(m => m.Id, "Tree name:")
-    @Html.DropDownListFor(m => m.Id, (SelectList)ViewBag.Items)
+    @Html.DropDownListFor(m => m.Id, (SelectList)ViewBag.Trees)
     @Html.ValidationMessageFor(m => m.Id)
 
     <input type="submit" value="Load this tree" />

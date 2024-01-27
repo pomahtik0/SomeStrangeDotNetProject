@@ -11,7 +11,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
     public class TreeObject : TreeComponent, IEnumerable<TreeComponent>
     {
         protected List<TreeComponent> children = [];
-        protected TreeObject()
+        internal TreeObject()
         {
 
         }

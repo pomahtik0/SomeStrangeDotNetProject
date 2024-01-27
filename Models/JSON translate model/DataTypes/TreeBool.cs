@@ -7,9 +7,11 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
     public class TreeBool : TreeComponent
     {
         public bool Value { get; set; }
-        public override void DbRead(DataTable table)
+
+        public override void DbRead(DataTable dataTable)
         {
-            throw new NotImplementedException();
+            var value = dataTable.AsEnumerable().Where(row => row.Field<int>("Id").Equals(Id)).Select(row => row.Field<string>("Value")).FirstOrDefault();
+            this.Value = bool.Parse(value ?? "False");
         }
 
         public override int DbSave(SqlConnection connection, int tree_id)

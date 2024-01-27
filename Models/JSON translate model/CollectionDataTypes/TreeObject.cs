@@ -176,6 +176,16 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             }
         }
 
+        private void FindOrCreate(Queue<string> queue)
+        {
+
+        }
+
+        public void ReadFromTxt(IFormFile file)
+        {
+            
+        }
+
         public override string Render()
         {
             StringBuilder sb = new StringBuilder();

@@ -51,12 +51,26 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                         treeString.ReadFromJson(child.Value);
                         children.Add(treeString);
                         break;
+
                     case JsonValueKind.Object:
                         var treeObject = new TreeObject() { Key = child.Name, Parent = this };
                         treeObject.ReadFromJson(child.Value);
                         children.Add(treeObject);
                         break;
-                    default: throw new NotImplementedException();
+
+                    case JsonValueKind.True:
+                    case JsonValueKind.False:
+                        break;
+
+                    case JsonValueKind.Null:
+                        break;
+
+                    case JsonValueKind.Number:
+                        break;
+
+                    case JsonValueKind.Array:
+                        break;
+                    default: throw new InvalidOperationException("Have no idea");
                 }
             }
         }

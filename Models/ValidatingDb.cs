@@ -1,12 +1,14 @@
-﻿namespace SomeStrangeDotNetProject.Models
+﻿using System.Data.SqlClient;
+
+namespace SomeStrangeDotNetProject.Models
 {
-    public class ValidatingDb(string connctionString)
+    public class ValidatingDb(string connectionString)
     {
-        private readonly string connctionString = connctionString;
+        private readonly string connectionString = connectionString;
 
         public bool Validate()
         {
-            return true;
+            
         }
 
         private bool DatabaseExist()

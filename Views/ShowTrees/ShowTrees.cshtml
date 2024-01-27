@@ -81,7 +81,7 @@
         <ul id="myUL">
             <li>
                 <span class ="caret">@Model.Name</span>
-                RenderTree(Model.TreeRoot)
+                @Html.Raw(RenderTree(Model.TreeRoot))
             </li>
         </ul>
     }
@@ -96,5 +96,5 @@
             this.parentElement.querySelector(".nested").classList.toggle("active");
             this.classList.toggle("caret-down");
         });
-}
+    }
 </script>

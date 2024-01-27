@@ -30,7 +30,7 @@ namespace SomeStrangeDotNetProject.Controllers
                 return BadRequest("No file selected");
             }
 
-            var fileName = Path.GetFileName(file.FileName);
+            var fileName = Path.GetFileNameWithoutExtension(file.FileName);
             var fileExt = Path.GetExtension(file.FileName);
 
             // Validate the file extension

@@ -1,4 +1,6 @@
-﻿using System.Data.SqlClient;
+﻿using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes;
+using System.Data.SqlClient;
+using System.Text.Json;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes
 {
@@ -18,6 +20,45 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             }
             children.ForEach(child => child.DbSave(connection, tree_id)); // saving children of the object
             return Id;
+        }
+        public override void ReadFromJson(JsonElement jsonElement)
+        {
+            foreach (var child in jsonElement.EnumerateArray())
+            {
+                TreeComponent treeComponent;
+                switch (child.ValueKind)
+                {
+                    case JsonValueKind.String:
+                        treeComponent = new TreeString();
+                        break;
+
+                    case JsonValueKind.Object:
+                        treeComponent = new TreeObject();
+                        break;
+
+                    case JsonValueKind.True:
+                    case JsonValueKind.False:
+                        treeComponent = new TreeBool();
+                        break;
+
+                    case JsonValueKind.Null:
+                        treeComponent = new TreeNull();
+                        break;
+
+                    case JsonValueKind.Number:
+                        treeComponent = new TreeNumber();
+                        break;
+
+                    case JsonValueKind.Array:
+                        treeComponent = new TreeArray();
+                        break;
+                    default: throw new InvalidOperationException("Have no idea");
+                }
+
+                treeComponent.Parent = this;
+                treeComponent.ReadFromJson(child);
+                children.Add(treeComponent);
+            }
         }
     }
 }

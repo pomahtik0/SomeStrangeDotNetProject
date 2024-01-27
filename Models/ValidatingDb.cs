@@ -8,7 +8,13 @@ namespace SomeStrangeDotNetProject.Models
 
         public bool Validate()
         {
-            
+            using(var connection = new SqlConnection(connectionString))
+            {
+                if(!DatabaseExist(connection)) return false;
+                CreateTablesIfNotExist(connection);
+                if(!TablesSignatureFits(connection)) return false;
+            }
+            return true;
         }
 
         private bool DatabaseExist(SqlConnection conn) // possibly wrong
@@ -48,7 +54,7 @@ namespace SomeStrangeDotNetProject.Models
             if (DataTablesExist(conn)) return;
         }
 
-        private bool TablesSignatureFits()
+        private bool TablesSignatureFits(SqlConnection conn)
         {
 
         }

@@ -5,13 +5,13 @@
 @functions {
     string RenderTree(TreeObject rout)
     {
-        string htmlString = "<ul>"; // string builder mb
+        string htmlString = "<ul class='nested'>"; // string builder mb
         foreach (var child in rout)
         {
             htmlString += "<li>";
             if (child is TreeObject)
             {
-                htmlString += $"<Span>{child.Key}</Span>";
+                htmlString += $"<span class ='caret'>{child.Key}</span>";
                 htmlString += RenderTree((TreeObject)child);
             }
             else if (child is TreeString)
@@ -35,9 +35,9 @@
 @{
     if (Model?.TreeRoot != null)
     {
-        <ul>
+        <ul id="myUL">
             <li>
-                <span>@Model.Name</span>
+                <span class ="caret">@Model.Name</span>
                 @RenderTree(Model.TreeRoot)
             </li>
         </ul>

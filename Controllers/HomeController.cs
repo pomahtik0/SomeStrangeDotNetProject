@@ -66,7 +66,7 @@ namespace SomeStrangeDotNetProject.Controllers
             return View("ConnectDb");
         }
 
-        public IActionResult MakeConnectionToDb()
+        public IActionResult UploadTree()
         {
             return View();
         }
@@ -79,7 +79,7 @@ namespace SomeStrangeDotNetProject.Controllers
             connectionString.DataSource = "(localDb)\\MSSQLLocalDB";
             // TODO: check for valid string
             HttpContext.Session.SetString("connection_string", connectionString.ConnectionString);
-            return View("Index");
+            return View("ShowTrees");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

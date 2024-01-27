@@ -80,7 +80,7 @@ namespace SomeStrangeDotNetProject.Controllers
             connectionString.DataSource = "(localDb)\\MSSQLLocalDB";
             // TODO: check for valid string
             HttpContext.Session.SetString("connection_string", connectionString.ConnectionString);
-            return View("ShowTrees");
+            return RedirectToAction("Index", "ShowTrees");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

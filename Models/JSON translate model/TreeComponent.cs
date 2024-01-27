@@ -23,7 +23,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
     public abstract class TreeComponent : IJsonReadable, IDbSaveAndRead, IRender
     {
         public int Id { get; set; }
-        private string? key;
+        protected string? key;
         public string? Key
         {
             get => key ?? (Parent != null ? $"{Parent.Key}.{Parent.children.IndexOf(this)}" : null);

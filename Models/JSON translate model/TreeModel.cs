@@ -15,11 +15,13 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
 
         public void ReadFromTxt(IFormFile file)
         {
+            Name = Path.GetFileNameWithoutExtension(file.FileName);
 
         }
 
         public void ReadFromJson(IFormFile file) 
         {
+            Name = Path.GetFileNameWithoutExtension(file.FileName);
             JsonDocument doc;
             doc = JsonDocument.Parse(file.OpenReadStream());
             TreeRoot = new TreeObject(doc);

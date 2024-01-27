@@ -15,6 +15,10 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
         public abstract void DbRead(DataTable table);
     }
 
+    public interface IRender
+    {
+        public abstract string Render();
+    }
     public abstract class TreeComponent : IJsonReadable, IDbSaveAndRead
     {
         public int Id { get; set; }

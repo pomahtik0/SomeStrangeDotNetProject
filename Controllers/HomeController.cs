@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SomeStrangeDotNetProject.Models;
+using SomeStrangeDotNetProject.Models.JSON_translate_model;
 using SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -30,7 +31,6 @@ namespace SomeStrangeDotNetProject.Controllers
                 return BadRequest("No file selected");
             }
 
-            var fileName = Path.GetFileNameWithoutExtension(file.FileName);
             var fileExt = Path.GetExtension(file.FileName);
 
             // Validate the file extension
@@ -39,20 +39,20 @@ namespace SomeStrangeDotNetProject.Controllers
                 return BadRequest("Invalid file type");
             }
 
-            TreeObject root;
+            TreeModel tree = new TreeModel();
 
             if (fileExt == ".json")
             {
-
+                tree.ReadFromJson(file);
             }
             else
             {
-                throw new NotImplementedException();
+                tree.ReadFromTxt(file);
             }
 
             using (SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string")))
             {
-                root.DbSaveRoot(conn, fileName);
+                (tree.TreeRoot as TreeObject)?.DbSaveRoot(conn, tree.Name);
             };
             return RedirectToAction("Index", "ShowTrees");
         }

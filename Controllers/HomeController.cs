@@ -18,7 +18,7 @@ namespace SomeStrangeDotNetProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadNewTree(IFormFile file, string text)
+        public async Task<IActionResult> UploadNewTree(IFormFile file)
         {
             if(!HttpContext.Session.Keys.Any(str => str == "connection_string"))
             {

@@ -26,8 +26,7 @@ namespace SomeStrangeDotNetProject.Controllers
             var selectList = new SelectList(list, "Id", "Name");
             currentTree.TreeRoot = new TreeObject(conn, tree.Id);
             ViewBag.Trees = selectList;
-            ViewBag.CurrentTree = selectList;
-            return View("ShowTrees");
+            return View("ShowTrees", currentTree);
         }
     }
 }

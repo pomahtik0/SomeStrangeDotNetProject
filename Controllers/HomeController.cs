@@ -61,7 +61,7 @@ namespace SomeStrangeDotNetProject.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return View("ConnectDb");
         }
 
         public IActionResult MakeConnectionToDb()

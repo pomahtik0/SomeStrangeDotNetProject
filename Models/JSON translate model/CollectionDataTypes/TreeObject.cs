@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes
 {
-    public class TreeObject : TreeComponent, IEnumerable<TreeComponent>
+    public class TreeObject : TreeComponent
     {
         protected List<TreeComponent> children = [];
         internal TreeObject()
@@ -175,15 +175,9 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             }
         }
 
-        public IEnumerator<TreeComponent> GetEnumerator()
+        public override string Render()
         {
-            foreach(var child in children)
-                yield return child;
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
+            throw new NotImplementedException();
         }
     }
 }

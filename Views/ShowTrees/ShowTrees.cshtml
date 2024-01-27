@@ -11,4 +11,4 @@
     <input type="submit" value="Load this tree" />
 }
 
-@Html.Raw(Model?.Render().Replace("@Model.Name", Model.Name))
+@Html.Raw(Model?.Render().Replace("@Model.Name", Model.Name)) @* replacing may couse bugs and name conflicts*@

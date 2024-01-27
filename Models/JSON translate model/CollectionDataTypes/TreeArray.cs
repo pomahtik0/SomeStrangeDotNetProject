@@ -60,5 +60,9 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 children.Add(treeComponent);
             }
         }
+        public override string Render()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

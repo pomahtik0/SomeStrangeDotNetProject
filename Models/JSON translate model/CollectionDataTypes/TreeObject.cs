@@ -178,14 +178,15 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
 
         public void FindOrCreate(Queue<string> queue)
         {
-            if (children.Any(x => x.Key == queue.Peek())) // Find
+            string key = queue.Dequeue();
+            TreeObject? existingKey = children.Find(x => x.Key == key) as TreeObject;
+            if (existingKey != null) // Find
             {
-                if(queue.Count == 2)
+                if(queue.Count == 1)
                 {
                     throw new InvalidOperationException("Attampt to reasighn existing value");
                 }
-                queue.Dequeue();
-                FindOrCreate(queue);
+                existingKey.FindOrCreate(queue);
             }
             else if (queue.Count > 2) // Else create
             {

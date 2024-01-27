@@ -67,7 +67,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             sb.AppendLine(
                 $"""
                 <li>
-                    <span class='caret'>{Key ?? Parent?.children.IndexOf(this).ToString() ?? "@Model.Name"}</span> [
+                    <span class='caret'>{Key}</span> [
                     <ul class='nested'>
                 """);
 

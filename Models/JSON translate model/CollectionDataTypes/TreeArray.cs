@@ -62,7 +62,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         }
         public override string Render()
         {
-            throw new NotImplementedException();
+            return $"[{base.Render()}]";
         }
     }
 }

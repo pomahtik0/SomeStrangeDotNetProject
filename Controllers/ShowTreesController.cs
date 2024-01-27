@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SomeStrangeDotNetProject.Models.JSON_translate_model;
+using System.Data.SqlClient;
 
 namespace SomeStrangeDotNetProject.Controllers
 {
@@ -8,8 +9,8 @@ namespace SomeStrangeDotNetProject.Controllers
     {
         public IActionResult Index()
         {
-            var list = TreeModel.GetAllDbTrees();
-
+            using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));
+            var list = TreeModel.GetAllDbTrees(conn);
             var selectList = new SelectList(list, "Id", "Name");
             ViewBag.Items = selectList;
             return View("ShowTrees");

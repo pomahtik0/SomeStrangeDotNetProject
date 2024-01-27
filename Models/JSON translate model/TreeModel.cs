@@ -1,5 +1,7 @@
 ﻿using SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes;
+using System;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Text;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model
@@ -74,6 +76,27 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
                 </style>
                 """); // adding styles
             sb.AppendLine
+                ("""
+                <ul id="myUL">
+                    <li>
+                """);
+
+            if(TreeRoot?.Key == null)
+            {
+                sb.AppendLine($"""
+                            <span class="caret">{Name}</span>
+                            """);
+            }
+
+            sb.AppendLine(TreeRoot?.Render());
+
+            sb.AppendLine
+                ("""
+                    </li>
+                </ul>
+                """);
+
+            sb.AppendLine
                 ("""              
                 <script>
                     var toggler = document.getElementsByClassName("caret");
@@ -87,6 +110,8 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
                     }
                 </script>
                 """); // adding scripts
+
+            return sb.ToString();
         }
     }
 }

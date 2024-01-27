@@ -26,7 +26,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
         private string? key;
         public string? Key
         {
-            get => key ?? $"{Parent?.Key}.{Parent?.children.IndexOf(this)}";
+            get => key ?? (Parent != null ? $"{Parent.Key}.{Parent.children.IndexOf(this)}" : null);
             set => key = value;
         }
         public TreeObject? Parent { get; set; }

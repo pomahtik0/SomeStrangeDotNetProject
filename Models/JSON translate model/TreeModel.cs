@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model
 {
-    public class TreeModel
+    public class TreeModel : IRender
     {
         public int Id { get; set; }
         public string Name { get; set; } = "";
@@ -23,6 +23,11 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
                 connection.Close();
             }
             return trees;
+        }
+
+        public string Render()
+        {
+            throw new NotImplementedException();
         }
     }
 }

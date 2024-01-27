@@ -78,9 +78,13 @@ namespace SomeStrangeDotNetProject.Controllers
             SqlConnectionStringBuilder connectionString = new SqlConnectionStringBuilder();
             connectionString.AttachDBFilename = text;
             connectionString.DataSource = "(localDb)\\MSSQLLocalDB";
-            // TODO: check for valid string
-            HttpContext.Session.SetString("connection_string", connectionString.ConnectionString);
-            return RedirectToAction("Index", "ShowTrees");
+            var validateConn = new ValidatingDb(connectionString.ConnectionString);
+            if (validateConn.Validate())
+            {
+                HttpContext.Session.SetString("connection_string", connectionString.ConnectionString);
+                return RedirectToAction("Index", "ShowTrees");
+            }
+            else return BadRequest("Bad connection string");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

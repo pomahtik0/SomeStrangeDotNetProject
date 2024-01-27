@@ -31,5 +31,10 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
         {
             return;
         }
+
+        public override string Render()
+        {
+            return "<li><strong color='red'>Null</strong></li>";
+        }
     }
 }

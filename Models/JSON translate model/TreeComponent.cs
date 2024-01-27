@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
 
@@ -23,7 +24,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
     {
         public int Id { get; set; }
         public string? Key {  get; set; }
-        public TreeComponent? Parent { get; set; }
+        public TreeObject? Parent { get; set; }
 
         public abstract void DbRead(DataTable table);
         public abstract int DbSave(SqlConnection connection, int tree_id);

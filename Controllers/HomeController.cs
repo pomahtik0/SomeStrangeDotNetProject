@@ -30,6 +30,7 @@ namespace SomeStrangeDotNetProject.Controllers
                 return BadRequest("No file selected");
             }
 
+            var fileName = Path.GetFileName(file.FileName);
             var fileExt = Path.GetExtension(file.FileName);
 
             // Validate the file extension
@@ -52,7 +53,7 @@ namespace SomeStrangeDotNetProject.Controllers
                 TreeObject root = new TreeObject(doc);
                 using (SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string")))
                 {
-                    root.DbSaveRoot(conn, text);
+                    root.DbSaveRoot(conn, fileName);
                 };
                 // Return a success message
                 return View("Index");

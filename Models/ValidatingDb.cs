@@ -32,29 +32,20 @@ namespace SomeStrangeDotNetProject.Models
         private bool DataTablesExist(SqlConnection conn)
         {
             conn.Open();
-            string sql1 = "SELECT OBJECT_ID(N'dbo.Trees', N'U')";
-            string sql2 = "SELECT OBJECT_ID(N'dbo.Objects', N'U')";
-            using (SqlCommand cmd1 = new SqlCommand(sql1, conn))
+            string sql = "SELECT name FROM sys.tables WHERE name IN ('Trees', 'Objects')";
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
-                object result1 = cmd1.ExecuteScalar();
-                if (result1 != null)
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    using (var cmd2 = new SqlCommand(sql1, conn))
+                    reader.Read();
+                    if(reader.Read())
                     {
-                        object result2 = cmd2.ExecuteScalar();
-                        if (result2 != null)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
+                        return true;
                     }
-                }
-                else
-                {
-                    return false;
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
         }

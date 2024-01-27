@@ -15,11 +15,14 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
             {
                 connection.Open();
                 var reader = dataAdapter.ExecuteReader();
-                while (false) ;
+                while (reader.Read())
+                {
+                    trees.Add(new TreeModel() { Id = (int)reader[0], Name = (string)reader[1] });A
+                }
                 reader.Close();
                 connection.Close();
             }
-
+            return trees;
         }
     }
 }

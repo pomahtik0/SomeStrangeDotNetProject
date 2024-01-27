@@ -59,9 +59,9 @@ namespace SomeStrangeDotNetProject.Models
             }
         }
 
-        private void CreateTablesIfNotExist()
+        private void CreateTablesIfNotExist(SqlConnection conn)
         {
-
+            if (DataTablesExist(conn)) return;
         }
 
         private bool TablesSignatureFits()

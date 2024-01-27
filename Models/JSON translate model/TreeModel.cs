@@ -8,7 +8,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
         public int Id { get; set; }
         public string Name { get; set; } = "";
         public TreeObject? TreeRoot { get; set; }
-        public IEnumerable<TreeModel> GetAllDbTrees(SqlConnection connection)
+        public static IEnumerable<TreeModel> GetAllDbTrees(SqlConnection connection)
         {
             List<TreeModel> trees = new List<TreeModel>();
             using (SqlCommand dataAdapter = new SqlCommand("SELECT ([Id], [Name]) FROM [Trees]", connection))

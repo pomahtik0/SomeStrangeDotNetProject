@@ -146,7 +146,8 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
 
         public IEnumerator<TreeComponent> GetEnumerator()
         {
-            throw new NotImplementedException();
+            foreach(var child in children)
+                yield return child;
         }
 
         IEnumerator IEnumerable.GetEnumerator()

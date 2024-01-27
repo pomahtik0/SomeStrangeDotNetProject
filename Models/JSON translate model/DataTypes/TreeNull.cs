@@ -29,7 +29,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
 
         public override void ReadFromJson(JsonElement jsonElement)
         {
-            throw new NotImplementedException();
+            return;
         }
     }
 }

@@ -5,9 +5,7 @@
 <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="UploadNewTree">
     <div>
         <label for="file">Choose a file to upload:</label>
-        <input type="file" id="file" name="file"/>
-        <label for="text">Enter a name for your tree</label>
-        <input type="text" id="text" name="text"/>
+        <input type="file" id="file" title=".json or .txt file" name="file"/>
     </div>
     <div>
         <button type="submit">Upload</button>

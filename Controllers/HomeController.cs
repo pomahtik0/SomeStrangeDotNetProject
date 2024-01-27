@@ -18,7 +18,7 @@ namespace SomeStrangeDotNetProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadNewTree(IFormFile file)
+        public IActionResult UploadNewTree(IFormFile file)
         {
             if(!HttpContext.Session.Keys.Any(str => str == "connection_string"))
             {
@@ -43,16 +43,6 @@ namespace SomeStrangeDotNetProject.Controllers
 
             if (fileExt == ".json")
             {
-                JsonDocument doc;
-                try
-                {
-                    doc = await JsonDocument.ParseAsync(file.OpenReadStream());
-                }
-                catch (JsonException)
-                {
-                    return BadRequest("Not a json content in file");
-                }
-                root = new TreeObject(doc);
 
             }
             else

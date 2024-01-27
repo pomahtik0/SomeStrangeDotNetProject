@@ -190,13 +190,13 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             }
             else if (queue.Count > 1) // Else create
             {
-                TreeObject treeObject = new TreeObject() { Key = key };
+                TreeObject treeObject = new TreeObject() { Key = key, Parent = this };
                 children.Add(treeObject);
                 treeObject.FindOrCreate(queue);
             }
             else if (queue.Count == 1)
             {
-                children.Add(new TreeString() { Key= key, Value = queue.Dequeue() });
+                children.Add(new TreeString() { Key= key, Value = queue.Dequeue(), Parent = this });
             }
         }
 

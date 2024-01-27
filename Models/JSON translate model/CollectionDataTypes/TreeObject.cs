@@ -181,8 +181,9 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(
                 $"""
-                <span class='caret'>{Key ?? Parent?.children.IndexOf(this).ToString() ?? ""}</span>
-                <ul class='nested'>
+                <li>
+                    <span class='caret'>{Key ?? Parent?.children.IndexOf(this).ToString() ?? ""}</span>
+                    <ul class='nested'>
                 """);
 
             foreach(var child in children)
@@ -190,7 +191,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 sb.AppendLine(child.Render());
             }
 
-            sb.AppendLine("</ul>");
+            sb.AppendLine("</ul></li>");
             return sb.ToString();
         }
     }

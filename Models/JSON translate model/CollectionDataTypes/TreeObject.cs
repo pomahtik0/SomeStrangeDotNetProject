@@ -18,17 +18,15 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         {
             ReadFromJson(document.RootElement);
         }
-        public TreeObject(SqlConnection connection, string root_name)
+        public TreeObject(SqlConnection connection, int tree_id)
         {
-            int tree_id;
             connection.Open();
-            using (SqlCommand command = new SqlCommand("SELECT [Root_id], [Tree_id] FROM [Trees] WHERE [Name]=@Name", connection)) // command to get root id
+            using (SqlCommand command = new SqlCommand("SELECT [Root_id] FROM [Trees] WHERE [Id]=@Tree_id", connection)) // command to get root id
             {
-                command.Parameters.AddWithValue("@Name", root_name);
+                command.Parameters.AddWithValue("@Tree_id", tree_id);
                 var reader = command.ExecuteReader();
                 reader.Read();
                 this.Id = (int)reader[0];
-                tree_id = (int)reader[1];
                 reader.Close();
             }
             

@@ -11,13 +11,13 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
         public static IEnumerable<TreeModel> GetAllDbTrees(SqlConnection connection)
         {
             List<TreeModel> trees = new List<TreeModel>();
-            using (SqlCommand dataAdapter = new SqlCommand("SELECT ([Id], [Name]) FROM [Trees]", connection))
+            using (SqlCommand dataAdapter = new SqlCommand("SELECT [Id], [Name] FROM [Trees]", connection))
             {
                 connection.Open();
                 var reader = dataAdapter.ExecuteReader();
                 while (reader.Read())
                 {
-                    trees.Add(new TreeModel() { Id = (int)reader[0], Name = (string)reader[1] });A
+                    trees.Add(new TreeModel() { Id = (int)reader[0], Name = (string)reader[1] });
                 }
                 reader.Close();
                 connection.Close();

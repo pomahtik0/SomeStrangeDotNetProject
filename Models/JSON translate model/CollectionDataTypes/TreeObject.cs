@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes;
-using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
@@ -8,7 +7,7 @@ using System.Xml.Linq;
 
 namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTypes
 {
-    public class TreeObject : TreeComponent, IEnumerable<TreeComponent>
+    public class TreeObject : TreeComponent
     {
         protected List<TreeComponent> children = [];
         protected TreeObject()
@@ -142,16 +141,6 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 command.ExecuteNonQuery();
                 connection.Close();
             }
-        }
-
-        public IEnumerator<TreeComponent> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

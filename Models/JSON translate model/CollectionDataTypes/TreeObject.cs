@@ -44,34 +44,40 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         {
             foreach(var child in jsonElement.EnumerateObject())
             {
+                TreeComponent treeComponent;
                 switch(child.Value.ValueKind)
                 {
                     case JsonValueKind.String:
-                        var treeString = new TreeString() { Key = child.Name, Parent = this };
-                        treeString.ReadFromJson(child.Value);
-                        children.Add(treeString);
+                        treeComponent = new TreeString();
                         break;
 
                     case JsonValueKind.Object:
-                        var treeObject = new TreeObject() { Key = child.Name, Parent = this };
-                        treeObject.ReadFromJson(child.Value);
-                        children.Add(treeObject);
+                        treeComponent = new TreeObject();
                         break;
 
                     case JsonValueKind.True:
                     case JsonValueKind.False:
+                        treeComponent = new TreeBool();
                         break;
 
                     case JsonValueKind.Null:
+                        treeComponent = new TreeNull();
                         break;
 
                     case JsonValueKind.Number:
+                        treeComponent = new TreeNumber();
                         break;
 
                     case JsonValueKind.Array:
+                        treeComponent = new TreeArray();
                         break;
                     default: throw new InvalidOperationException("Have no idea");
                 }
+
+                treeComponent.Key = child.Name;
+                treeComponent.Parent = this;
+                treeComponent.ReadFromJson(child.Value);
+                children.Add(treeComponent);
             }
         }
 

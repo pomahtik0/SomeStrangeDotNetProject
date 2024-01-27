@@ -184,6 +184,12 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
                 <span class='caret'>{Key ?? Parent?.children.IndexOf(this).ToString() ?? ""}</span>
                 <ul class='nested'>
                 """);
+
+            foreach(var child in children)
+            {
+                sb.AppendLine(child.Render());
+            }
+
             sb.AppendLine("</ul>");
             return sb.ToString();
         }

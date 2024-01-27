@@ -181,11 +181,6 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
 
         }
 
-        public void ReadFromTxt(IFormFile file)
-        {
-            
-        }
-
         public override string Render()
         {
             StringBuilder sb = new StringBuilder();

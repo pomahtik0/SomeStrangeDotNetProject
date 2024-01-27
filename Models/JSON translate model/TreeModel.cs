@@ -11,6 +11,17 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
         public int Id { get; set; }
         public string Name { get; set; } = "";
         public TreeComponent? TreeRoot { get; set; }
+
+        public void ReadFromTxt(IFormFile file)
+        {
+
+        }
+
+        public void ReadFromJson(IFormFile file) 
+        {
+        
+        }
+
         public static IEnumerable<TreeModel> GetAllDbTrees(SqlConnection connection)
         {
             List<TreeModel> trees = new List<TreeModel>();

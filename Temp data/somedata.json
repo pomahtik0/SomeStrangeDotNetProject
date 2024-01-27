@@ -2,7 +2,14 @@
   "21": {
     "value1": "sada",
     "value2": 21,
-    "value3": [ 1, 2, 3 ],
+    "value3": [
+      {
+        "Hello": 1
+      },
+      1,
+      2,
+      3
+    ],
     "value4": true,
     "value5": {
       "value1": 22

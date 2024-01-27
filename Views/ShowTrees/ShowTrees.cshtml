@@ -3,28 +3,6 @@
 @using SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
 @model TreeModel
 
-@functions {
-    string RenderTree(TreeObject rout)
-    {
-        string htmlString = "<ul class='nested'>"; // string builder mb
-        foreach (var child in rout)
-        {
-            htmlString += "<li>";
-            if (child is TreeObject)
-            {
-                htmlString += $"<span class ='caret'>{child.Key}</span>";
-                htmlString += RenderTree((TreeObject)child);
-            }
-            else if (child is TreeString)
-            {
-                htmlString += $"{child.Key}  {((TreeString)child).Value}";
-            }
-            htmlString += "</li>";
-        }
-        return htmlString += "</ul>";
-    }
-}
-
 @using (Html.BeginForm("GetTree", "ShowTrees", FormMethod.Post))
 {
     @Html.LabelFor(m => m.Id, "Tree name:")

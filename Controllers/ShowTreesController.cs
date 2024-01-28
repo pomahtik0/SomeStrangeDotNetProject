@@ -8,6 +8,11 @@ namespace SomeStrangeDotNetProject.Controllers
 {
     public class ShowTreesController : Controller
     {
+        public IActionResult GetTree(TreeModel treeModel)
+        {
+
+        }
+
         [HttpGet]
         public IActionResult GetTree(string? value)
         {

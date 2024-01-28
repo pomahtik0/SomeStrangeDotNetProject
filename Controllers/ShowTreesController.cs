@@ -24,7 +24,8 @@ namespace SomeStrangeDotNetProject.Controllers
             if (!string.IsNullOrEmpty(value))
             {
                 Queue<string> request = new Queue<string>(value.Split('/'));
-                tree = list.Where(x => x.Name == request.Dequeue()).FirstOrDefault();
+                string treeName = request.Dequeue();
+                tree = list.Where(x => x.Name == treeName).FirstOrDefault();
                 if (tree != null)
                 {
                     tree.TreeRoot = new TreeObject(conn, tree.Id);

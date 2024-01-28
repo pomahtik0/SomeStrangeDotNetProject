@@ -57,9 +57,17 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
             return trees;
         }
 
-        public void FindAndReRoot(Queue<string> searchRequest)
+        public bool FindAndReRoot(Queue<string> searchRequest)
         {
-            TreeRoot = TreeRoot?.Find(searchRequest);
+            try
+            {
+                TreeRoot = TreeRoot?.Find(searchRequest);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
 
         public string Render()

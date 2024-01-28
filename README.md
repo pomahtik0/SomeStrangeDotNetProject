@@ -22,6 +22,7 @@ CREATE TABLE [dbo].[Trees] (
     CONSTRAINT [FK_Trees_ToObjects] FOREIGN KEY ([Root_id]) REFERENCES [dbo].[Objects] ([Id])
 );
 ```
+![data](/Images-for-github/data-looks-in-db.png) ![data](/Images-for-github/tree-data-in-db.png)
 
 ## solved tasks:
 - [x] Database developed
@@ -30,3 +31,5 @@ CREATE TABLE [dbo].[Trees] (
 - [x] Bonus 1
 - [x] Bonus 2
 - [ ] Bonus 3 
+
+## some examples

@@ -12,14 +12,17 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
     public class TreeObject : TreeComponent
     {
         internal List<TreeComponent> children = [];
+        
         internal TreeObject()
         {
 
         }
+        
         public TreeObject(JsonDocument document)
         {
             ReadFromJson(document.RootElement);
         }
+        
         public TreeObject(SqlConnection connection, int tree_id)
         {
             connection.Open();
@@ -41,6 +44,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             connection.Close();
             DbRead(dataTable);
         }
+
         public override void ReadFromJson(JsonElement jsonElement)
         {
             foreach(var child in jsonElement.EnumerateObject())

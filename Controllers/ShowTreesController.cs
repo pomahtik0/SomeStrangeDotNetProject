@@ -33,6 +33,8 @@ namespace SomeStrangeDotNetProject.Controllers
                     // дерева з такою назвою не існує
                 }
             }
+
+            return View("ShowTrees", tree);
         }
     }
 }

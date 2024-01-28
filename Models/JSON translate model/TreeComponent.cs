@@ -35,5 +35,14 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
         public abstract int DbSave(SqlConnection connection, int tree_id);
         public abstract void ReadFromJson(JsonElement jsonElement);
         public abstract string Render();
+
+        public virtual TreeComponent Find(Queue<string> searchRequest)
+        {
+            if (Key == searchRequest.Dequeue())
+            {
+                return this;
+            }
+            throw new ArgumentException();
+        }
     }
 }

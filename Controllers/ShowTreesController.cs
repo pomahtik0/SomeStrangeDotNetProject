@@ -8,7 +8,8 @@ namespace SomeStrangeDotNetProject.Controllers
 {
     public class ShowTreesController : Controller
     {
-        public IActionResult GetTree(TreeModel tree)
+        [HttpGet]
+        public IActionResult GetTree(string? value)
         {
             using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));
             var list = TreeModel.GetAllDbTrees(conn);

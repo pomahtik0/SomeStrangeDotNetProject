@@ -11,4 +11,16 @@
     <input type="submit" value="Load this tree" />
 }
 
+<br/>
 @Html.Raw(Model?.Render().Replace("@Model.Name", Model.Name)) @* replacing may couse bugs and name conflicts*@
+
+<br />
+<p>
+    watching trees:
+    <ol>
+        <li>You may either upload tree by using form above, or by typing path; (few examples on screenshots, github)</li>
+        <li>Long path looks like that: "localhost/ShowTrees/GetTree/*your tree name*/*Keys*";</li>
+        <li>Short variant: "localhost/*your tree name*/*Keys*";</li>
+        <li>If you have more than one tree with the same name only first one will be printed;</li>
+    </ol>
+</p>

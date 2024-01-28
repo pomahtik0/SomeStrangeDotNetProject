@@ -2,6 +2,9 @@
 
 Program connects to **local database** by user-entered path to .mdf(mssql). Than upload new trees to database using .json or .txt files as well as browse them in a custom-made treeview.
 
+Installed packeges:
+- System.Data.SqlClient by Microsoft
+
 ## solved tasks:
 - [x] Database developed
 - [x] Read tree from .json and save it to DB

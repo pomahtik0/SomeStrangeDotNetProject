@@ -200,6 +200,13 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             }
         }
 
+        public override TreeComponent Find(Queue<string> searchRequest)
+        {
+            string request = searchRequest.Dequeue();
+            TreeComponent? component = children.Find(child => child.Key == request);
+            return component?.Find(searchRequest) ?? throw new IndexOutOfRangeException();
+        }
+
         public override string Render()
         {
             StringBuilder sb = new StringBuilder();

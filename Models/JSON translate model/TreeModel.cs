@@ -59,7 +59,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
 
         public void FindAndReRoot(Queue<string> searchRequest)
         {
-
+            TreeRoot = TreeRoot?.Find(searchRequest);
         }
 
         public string Render()

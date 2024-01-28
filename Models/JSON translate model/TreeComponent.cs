@@ -44,7 +44,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
 
         public virtual TreeComponent Find(Queue<string> searchRequest)
         {
-            if (Key == searchRequest.Dequeue())
+            if (searchRequest.Count == 0) // if search finished
             {
                 return this;
             }

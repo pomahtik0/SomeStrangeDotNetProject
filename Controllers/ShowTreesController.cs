@@ -10,42 +10,56 @@ namespace SomeStrangeDotNetProject.Controllers
     {
         public IActionResult GetTree(TreeModel treeModel)
         {
-            using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));
-            var list = TreeModel.GetAllDbTrees(conn);
-            ViewBag.Trees = new SelectList(list, "Id", "Name");
-            TreeModel tree = list.Where(x => x.Id == treeModel.Id).First();
-            tree.TreeRoot = new TreeObject(conn, treeModel.Id);
-            return View("ShowTrees", tree);
+            try
+            {
+                using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));
+                var list = TreeModel.GetAllDbTrees(conn);
+                ViewBag.Trees = new SelectList(list, "Id", "Name");
+                TreeModel tree = list.Where(x => x.Id == treeModel.Id).First();
+                tree.TreeRoot = new TreeObject(conn, treeModel.Id);
+                return View("ShowTrees", tree);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet]
         public IActionResult GetTree(string? value)
         {
-            using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));
-            var list = TreeModel.GetAllDbTrees(conn);
-            ViewBag.Trees = new SelectList(list, "Id", "Name");
-            TreeModel? tree = null;
-
-            if (!string.IsNullOrEmpty(value))
+            try
             {
-                Queue<string> request = new Queue<string>(value.Split('/'));
-                string treeName = request.Dequeue();
-                tree = list.Where(x => x.Name == treeName).FirstOrDefault();
-                if (tree != null)
+                using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));
+                var list = TreeModel.GetAllDbTrees(conn);
+                ViewBag.Trees = new SelectList(list, "Id", "Name");
+                TreeModel? tree = null;
+
+                if (!string.IsNullOrEmpty(value))
                 {
-                    tree.TreeRoot = new TreeObject(conn, tree.Id);
-                    if(!tree.FindAndReRoot(request))
+                    Queue<string> request = new Queue<string>(value.Split('/'));
+                    string treeName = request.Dequeue();
+                    tree = list.Where(x => x.Name == treeName).FirstOrDefault();
+                    if (tree != null)
                     {
-                        return BadRequest("Root path is wrong, try to check it");
+                        tree.TreeRoot = new TreeObject(conn, tree.Id);
+                        if (!tree.FindAndReRoot(request))
+                        {
+                            return BadRequest("Root path is wrong, try to check it");
+                        }
+                    }
+                    else
+                    {
+                        return BadRequest("No tree named like that");
                     }
                 }
-                else
-                {
-                    return BadRequest("No tree named like that");
-                }
-            }
 
-            return View("ShowTrees", tree);
+                return View("ShowTrees", tree);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

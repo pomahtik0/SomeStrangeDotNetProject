@@ -13,11 +13,7 @@ namespace SomeStrangeDotNetProject.Controllers
         {
             using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));
             var list = TreeModel.GetAllDbTrees(conn);
-            var currentTree = list.Where(x => x.Id == tree.Id).First();
-            var selectList = new SelectList(list, "Id", "Name");
-            currentTree.TreeRoot = new TreeObject(conn, tree.Id);
-            ViewBag.Trees = selectList;
-            return View("ShowTrees", currentTree);
+            ViewBag.Trees = new SelectList(list, "Id", "Name");
         }
     }
 }

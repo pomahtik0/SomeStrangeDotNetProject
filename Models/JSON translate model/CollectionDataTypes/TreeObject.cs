@@ -206,6 +206,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
 
         public override TreeComponent Find(Queue<string> searchRequest)
         {
+            if (searchRequest.Count == 0) return this;
             string request = searchRequest.Dequeue();
             TreeComponent? component = children.Find(child => child.Key == request);
             return component?.Find(searchRequest) ?? throw new IndexOutOfRangeException();

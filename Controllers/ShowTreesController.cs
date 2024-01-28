@@ -10,7 +10,12 @@ namespace SomeStrangeDotNetProject.Controllers
     {
         public IActionResult GetTree(TreeModel treeModel)
         {
-
+            using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));
+            var list = TreeModel.GetAllDbTrees(conn);
+            ViewBag.Trees = new SelectList(list, "Id", "Name");
+            TreeModel tree = list.Where(x => x.Id == treeModel.Id).First();
+            tree.TreeRoot = new TreeObject(conn, treeModel.Id);
+            return View("ShowTrees", tree);
         }
 
         [HttpGet]

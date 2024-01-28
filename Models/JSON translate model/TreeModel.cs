@@ -57,6 +57,11 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
             return trees;
         }
 
+        public void FindAndReRoot(Queue<string> searchRequest)
+        {
+
+        }
+
         public string Render()
         {
             StringBuilder sb = new StringBuilder();

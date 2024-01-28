@@ -10,7 +10,9 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
     public class TreeModel : IRender
     {
         public int Id { get; set; }
+
         public string Name { get; set; } = "";
+        
         public TreeComponent? TreeRoot { get; set; }
 
         public void ReadFromTxt(IFormFile file)

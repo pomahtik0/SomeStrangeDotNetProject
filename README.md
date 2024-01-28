@@ -1,5 +1,13 @@
 # Project to solve the task ==insert later==.
 
+## solved tasks:
+- [x] Database developed
+- [x] Read tree from .json and save it to DB
+- [x] Read from DB as tree
+- [x] Bonus 1
+- [x] Bonus 2
+- [ ] Bonus 3
+
 ## using the next database structure (mssql):
 ```
 CREATE TABLE [dbo].[Objects] (
@@ -22,14 +30,7 @@ CREATE TABLE [dbo].[Trees] (
     CONSTRAINT [FK_Trees_ToObjects] FOREIGN KEY ([Root_id]) REFERENCES [dbo].[Objects] ([Id])
 );
 ```
-![data](/Images-for-github/data-looks-in-db.png) ![data](/Images-for-github/tree-data-in-db.png)
-
-## solved tasks:
-- [x] Database developed
-- [x] Read tree from .json and save it to DB
-- [x] Read from DB as tree
-- [x] Bonus 1
-- [x] Bonus 2
-- [ ] Bonus 3 
+### Data looks in DB:
+![data](/Images-for-github/tree-data-in-db.png)![data](/Images-for-github/data-looks-in-db.png) 
 
 ## some examples

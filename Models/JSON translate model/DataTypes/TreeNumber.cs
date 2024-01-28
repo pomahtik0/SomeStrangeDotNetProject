@@ -18,7 +18,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
         {
             using (var command = new SqlCommand(@"INSERT INTO Objects([Key], [Value], [Separator], [Parent_id], [Tree_id]) OUTPUT inserted.Id VALUES(@Key, @Value, @Separator, @Parent_id, @Tree_id)", connection)) // saving object
             {
-                command.Parameters.AddWithValue("@Key", Key ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@Key", key ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@Value", Value.ToString());
                 command.Parameters.AddWithValue("@Separator", "Number");
                 command.Parameters.AddWithValue("@Parent_id", Parent?.Id ?? (object)DBNull.Value);

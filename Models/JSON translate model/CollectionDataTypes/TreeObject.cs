@@ -128,7 +128,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
         {
             using (var command = new SqlCommand(@"INSERT INTO Objects([Key], [Separator], [Parent_id], [Tree_id]) OUTPUT inserted.Id VALUES(@Key, @Separator, @Parent_id, @Tree_id)", connection)) // saving object
             {
-                command.Parameters.AddWithValue("@Key", Key ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@Key", key ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@Separator", "Object");
                 command.Parameters.AddWithValue("@Parent_id", Parent?.Id ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@Tree_id", tree_id);

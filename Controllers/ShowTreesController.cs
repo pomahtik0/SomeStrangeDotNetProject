@@ -8,15 +8,6 @@ namespace SomeStrangeDotNetProject.Controllers
 {
     public class ShowTreesController : Controller
     {
-        public IActionResult Index()
-        {
-            using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));
-            var list = TreeModel.GetAllDbTrees(conn);
-            var selectList = new SelectList(list, "Id", "Name");
-            ViewBag.Trees = selectList;
-            return View("ShowTrees");
-        }
-
         public IActionResult GetTree(TreeModel tree)
         {
             using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));

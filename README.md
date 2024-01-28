@@ -1,5 +1,7 @@
 # Project to solve the task ==insert later==.
 
+Program connects to **local database** by user-entered path to .mdf(mssql). Than upload new trees to database using .json or .txt files as well as browse them in a custom-made treeview.
+
 ## solved tasks:
 - [x] Database developed
 - [x] Read tree from .json and save it to DB
@@ -30,6 +32,7 @@ CREATE TABLE [dbo].[Trees] (
     CONSTRAINT [FK_Trees_ToObjects] FOREIGN KEY ([Root_id]) REFERENCES [dbo].[Objects] ([Id])
 );
 ```
+
 ### Data looks in DB:
 ![data](/Images-for-github/tree-data-in-db.png)![data](/Images-for-github/data-looks-in-db.png) 
 

@@ -109,7 +109,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
 
             sb.AppendLine(TreeRoot?.Render());
 
-            sb.AppendLine("<ul>");
+            sb.AppendLine("</ul>");
 
             sb.AppendLine
                 ("""              

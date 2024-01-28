@@ -54,7 +54,7 @@ namespace SomeStrangeDotNetProject.Controllers
             {
                 (tree.TreeRoot as TreeObject)?.DbSaveRoot(conn, tree.Name);
             };
-            return RedirectToAction("Index", "ShowTrees");
+            return RedirectToAction("GetTree", "ShowTrees");
         }
 
         public IActionResult Index()
@@ -77,7 +77,7 @@ namespace SomeStrangeDotNetProject.Controllers
             if (validateConn.Validate())
             {
                 HttpContext.Session.SetString("connection_string", connectionString.ConnectionString);
-                return RedirectToAction("Index", "ShowTrees");
+                return RedirectToAction("GetTree", "ShowTrees");
             }
             else return BadRequest("Bad connection string");
         }

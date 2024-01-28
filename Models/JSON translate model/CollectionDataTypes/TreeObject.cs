@@ -217,7 +217,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.CollectionDataTyp
             sb.AppendLine(
                 $"""
                 <li>
-                    <span class='caret'>{Key ?? "@Model.Name"}</span>
+                    <span class='caret'>'{Key ?? "@Model.Name"}'</span>
                     <ul class='nested'>
                 """);
 

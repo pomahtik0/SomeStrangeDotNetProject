@@ -23,17 +23,23 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model
     public abstract class TreeComponent : IJsonReadable, IDbSaveAndRead, IRender
     {
         public int Id { get; set; }
+        
         protected string? key;
+        
         public string? Key
         {
             get => key ?? (Parent != null ? $"{Parent.Key}.{Parent.children.IndexOf(this)}" : null);
             set => key = value;
         }
+        
         public TreeObject? Parent { get; set; }
 
         public abstract void DbRead(DataTable table);
+        
         public abstract int DbSave(SqlConnection connection, int tree_id);
+        
         public abstract void ReadFromJson(JsonElement jsonElement);
+
         public abstract string Render();
 
         public virtual TreeComponent Find(Queue<string> searchRequest)

@@ -14,10 +14,12 @@ namespace SomeStrangeDotNetProject.Controllers
             using SqlConnection conn = new SqlConnection(HttpContext.Session.GetString("connection_string"));
             var list = TreeModel.GetAllDbTrees(conn);
             ViewBag.Trees = new SelectList(list, "Id", "Name");
+            TreeModel? tree = null;
 
             if (!string.IsNullOrEmpty(value))
             {
                 Queue<string> request = new Queue<string>(value.Split('/'));
+                tree = list.Where(x => x.Name == request.Dequeue()).FirstOrDefault();
             }
         }
     }

@@ -34,6 +34,20 @@ CREATE TABLE [dbo].[Trees] (
 ```
 
 ### Data looks in DB:
-![data](/Images-for-github/tree-data-in-db.png)![data](/Images-for-github/data-looks-in-db.png) 
+![img](/Images-for-github/tree-data-in-db.png)![img](/Images-for-github/data-looks-in-db.png) 
 
 ## some examples
+
+### The treelooks like:
+![img](/Images-for-github/loading-tree-by-name.png)
+
+### Navigation through tree:
+/*tree name*/*tree keys*
+![1](/Images-for-github/navigating-to-tree-leaf.png)
+![2](/Images-for-github/navigating-to-tree-subroote.png)
+
+### Navigation through array:
+![img](/Images-for-github/navigation-through-array.png)
+
+### Navigation in short variant:
+![img](/Images-for-github/example-of-short-variant-tree-navigation.png)

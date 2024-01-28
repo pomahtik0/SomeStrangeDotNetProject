@@ -25,12 +25,12 @@ namespace SomeStrangeDotNetProject.Controllers
                     tree.TreeRoot = new TreeObject(conn, tree.Id);
                     if(!tree.FindAndReRoot(request))
                     {
-                       // помилка при пошуку гілки
+                        return BadRequest("Root path is wrong, try to check it");
                     }
                 }
                 else
                 {
-                    // дерева з такою назвою не існує
+                    return BadRequest("No tree named like that");
                 }
             }
 

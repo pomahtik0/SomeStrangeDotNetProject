@@ -37,7 +37,7 @@ namespace SomeStrangeDotNetProject.Models.JSON_translate_model.DataTypes
 
         public override string Render()
         {
-            return $"<li>{Key}: {Value}</li>";
+            return $"<li>'{Key}': {Value}</li>";
         }
     }
 }

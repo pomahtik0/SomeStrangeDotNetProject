@@ -54,7 +54,7 @@ namespace SomeStrangeDotNetProject.Controllers
             {
                 (tree.TreeRoot as TreeObject)?.DbSaveRoot(conn, tree.Name);
             };
-            return RedirectToAction("GetTree", "ShowTrees");
+            return Redirect($"{Request.PathBase}/ShowTrees/GetTree/{Path.GetFileNameWithoutExtension(file.FileName)}");
         }
 
         public IActionResult Index()

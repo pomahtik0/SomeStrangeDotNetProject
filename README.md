@@ -1,4 +1,4 @@
-# Project to solve the task ==insert later==.
+# Project to solve the [task](ТЗ_.Net_(New).pdf)
 
 Program connects to **local database** by user-entered path to .mdf(mssql). Than upload new trees to database using .json or .txt files as well as browse them in a custom-made treeview.
 
